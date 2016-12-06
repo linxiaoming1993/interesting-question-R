@@ -1,0 +1,14 @@
+## 问题：倒序输出字符串
+# 方法：类似快速排序法的递归
+# 注意：长度为偶数时，floor(n/2)和ceiling(n/2)的值是相等的
+StringInvert <- function(x){
+  if(nchar(x) == 1)
+    return(x)
+  else{
+    temp.1 <- substr(x, 1, floor(nchar(x)/2))
+    temp.2 <- substr(x, ceiling(nchar(x)/2 + 0.1), nchar(x))
+    temp.1 <- StringInvert(temp.1)
+    temp.2 <- StringInvert(temp.2)
+    return(paste0(temp.2, temp.1))
+  }
+}
