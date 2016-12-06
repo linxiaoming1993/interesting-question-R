@@ -1,0 +1,44 @@
+check <- function(out, n){
+  # 判断在前length(out)行皇后放好后，下一个皇后放在位置n上是否可行
+  if(length(out) == 0){
+    return(1)
+  }else{
+    le <- length(out)
+    for(i in 1:le){
+      if(n == out[i] | n == out[i] - (le + 1) + i | n == out[i] + le + 1 - i){
+        return(0)
+      }
+    }
+    return(1)
+  }
+}
+EightQueens <- function(n){
+  out <- numeric(n) # out[j]表示第j行的皇后放在第out[j]列
+  num <- 0    # 统计答案的个数
+  k <- 1      # k用来表示当前在放第几行的皇后
+  out[k] <- out[k] +1
+  while(1){
+    k <- k + 1
+    if (k == 0){  # 没有第0个位置放皇后，结束循环
+      break
+    }
+    out[k] <- out[k] + 1
+    if(out[k] > n){
+      out[k] <- 0
+      k <- k - 2
+    }
+    if(k > 1){
+      if(check(out[1:(k - 1)], out[k])){
+        if(k == n){        # 满足条件，输出
+          cat(out);cat("\n")
+          num <- num + 1
+          out[k] <- 0
+          k <- k - 2
+        }
+      }else{
+        k <- k - 1
+      }
+    }
+  }
+  paste("the number of answer is", num)
+}
