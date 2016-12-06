@@ -1,0 +1,25 @@
+# 问题：求向量x中最小的k个数
+MinK <- function(x, k){
+  QuickSort <- function(x){
+    if(length(x) <= 1){
+      return(x)
+    }else{
+      left <- x[x < x[1]]
+      right <- x[x > x[1]]
+      left <- QuickSort(left)
+      right <- QuickSort(right)
+      return(c(left,x[x == x[1]], right))
+    }
+  } # 快速排序
+  le <- length(x)
+  if(le < k){
+    return("the length of x is less than k")
+  }
+  out <- QuickSort(x[1:k])
+  if(le > k){
+    for(i in x[(k + 1):le]){
+      out[which(i < out)[1]] <- i  
+    }
+  }
+  return(out)
+}
