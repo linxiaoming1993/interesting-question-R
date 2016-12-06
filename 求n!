@@ -1,0 +1,14 @@
+# 求n!
+# 方法一：求准确值
+Factorial_1 <- function(n){
+  if(n == 1){
+    return(n)
+  }else{
+    return(n * Factorial_1(n - 1))
+  }
+}
+
+# 方法二： 由stirling公式求近似解
+Factorial_2 <- function(n){
+  return(sqrt(2 * pi * n) * ((n / exp(1)) ^ n))
+}
