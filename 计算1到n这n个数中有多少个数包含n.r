@@ -10,7 +10,7 @@ NumberContainOne <- function(n){
 
 ## 方法二：----------------------------------
 NumberContainOne_1 <- function(x){
-  le <- x
+  le <- nchar(x)
   x <- 1:x
   if(le == 1){
     return(1)
@@ -26,7 +26,7 @@ NumberContainOne_1 <- function(x){
 }
 ## 方法三：-------------------------------------------
 NumberContainOne_2 <- function(x){
-  le <- x
+  le <- nchar(x)
   if(le == 1){
     return(1)
   }else{
