@@ -1,0 +1,16 @@
+QuickSort <- function(x, decreasing = FALSE){
+  # 说明：并不算真正的快排，区别如下：
+  #     快排一次只需要一次循环比较一轮数据，这里less和larger分别用了一次循环，比较了两次，
+  #     原因就是R的循环太慢了，向量化计算比较快。
+  if(length(x) < 2){
+    return(x)
+  }
+  less <- x[x <= x[1]][-1]
+  larger <- x[x > x[1]]
+  if(decreasing){
+    return(c(QuickSort(larger), x[1], QuickSort(less)))
+  }
+  else{
+    return(c(QuickSort(less), x[1], QuickSort(larger)))
+  }
+}
